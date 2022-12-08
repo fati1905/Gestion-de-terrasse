@@ -1,3 +1,5 @@
+import java.util.Date;
+
 enum typeDeTerrasse {
     PERMANENTE,
     TEMPORAIRE,
@@ -5,10 +7,10 @@ enum typeDeTerrasse {
 
 public class TypeTerrasse {
     private typeDeTerrasse typeTerrasse;
-    private int dateDebut;
-    private int dateFin;
+    private Date dateDebut;
+    private Date dateFin;
     
-    public TypeTerrasse(typeDeTerrasse typeTerrasse, int dateDebut, int dateFin) {
+    public TypeTerrasse(typeDeTerrasse typeTerrasse, Date dateDebut, Date dateFin) {
         this.typeTerrasse = typeTerrasse;
         this.dateDebut = dateDebut;
         this.dateFin = dateFin;
@@ -18,11 +20,11 @@ public class TypeTerrasse {
         return typeTerrasse;
     }
 
-    public int getDateDebut() {
+    public Date getDateDebut() {
         return dateDebut;
     }
 
-    public int getDateFin() {
+    public Date getDateFin() {
         return dateFin;
     }
 
@@ -32,8 +34,8 @@ public class TypeTerrasse {
 
     // pas besoin de modifier le début de la terrasse normalement par contre la fin si le proprio veut faire arrêter le contrat plus tôt cela doit être possible
     
-    public void setDateFin(int dateFin) {
-        if (dateFin > dateDebut) 
+    public void setDateFin(Date dateFin) {
+        if (dateFin.after(dateDebut)) 
             this.dateFin = dateFin;
     }
 

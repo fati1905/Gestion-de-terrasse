@@ -1,12 +1,13 @@
 import java.util.ArrayList;
+import java.util.Date;
 
 public class Terrasse {
     private int code;
     private int surface;
-    private int date;
+    private Date date;
     private ArrayList<TypeTerrasse> listeTerrasse;
 
-    public Terrasse(int code, int surface, int date) {
+    public Terrasse(int code, int surface, Date date) {
         this.code = code;
         this.surface = surface;
         this.date = date;
@@ -21,7 +22,7 @@ public class Terrasse {
         return surface;
     }
 
-    public int getDate() {
+    public Date getDate() {
         return date;
     }
 
@@ -36,16 +37,17 @@ public class Terrasse {
             this.surface = surface;
     }
 
-    public void setDate(int date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 
-    public void ajouterTerrasse(typeDeTerrasse type, int dateDebut, int dateFin) {
+    public void ajouterTerrasse(typeDeTerrasse type, Date dateDebut, Date dateFin) {
         listeTerrasse.add(new TypeTerrasse(type, dateDebut, dateFin));
     }
 
     public void retirerTerrasse(TypeTerrasse terrasse) {
-        listeTerrasse.remove(terrasse);
+        if (terrasse != null)
+            listeTerrasse.remove(terrasse);
     }
 
     public String toString() {
