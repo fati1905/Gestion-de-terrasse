@@ -1,12 +1,12 @@
-import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 
 public class Contrat {
     private String titulaire;
     private Date dateDebut;
     private Date dateFin;
     private float montantAPayer;
-    private ArrayList<Tarif> tarifs;
+    private HashMap<Float, Tarif> tarifs;
 
 
     public Contrat(String titulaire, Date dateDebut, Date dateFin, float montantAPayer) {
@@ -14,7 +14,7 @@ public class Contrat {
         this.dateDebut = dateDebut;
         this.dateFin =dateFin;
         this.montantAPayer = montantAPayer;
-        tarifs = new ArrayList<>();
+        tarifs = new HashMap<>();
     }
 
     public String getTitulaire() {
@@ -33,6 +33,10 @@ public class Contrat {
         return montantAPayer;
     }
 
+    public HashMap<Float, Tarif> getTarifs() {
+        return tarifs;
+    }
+
     public void setDateFin(Date dateFin) {
         if (dateFin.after(dateDebut))
             this.dateFin = dateFin;
@@ -45,12 +49,12 @@ public class Contrat {
 
     public void ajouterTarif(float prix) {
         if (prix >= 0)
-            tarifs.add(new Tarif(prix));
+            tarifs.put(prix, new Tarif(prix));
     }
 
     public void retirerTarif(Tarif tarif) {
         if (tarif != null)
-            tarifs.remove(tarif);
+            tarifs.remove(tarif.getPrix());
     }
 
     public String toString() {

@@ -1,17 +1,17 @@
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Date;
 
 public class Terrasse {
     private int code;
     private int surface;
     private Date date;
-    private ArrayList<TypeTerrasse> listeTerrasse;
+    private HashMap<Integer,TypeTerrasse> listeTerrasse;
 
     public Terrasse(int code, int surface, Date date) {
         this.code = code;
         this.surface = surface;
         this.date = date;
-        listeTerrasse = new ArrayList<>();
+        listeTerrasse = new HashMap<>();
     }
 
     public int getCode() {
@@ -26,7 +26,7 @@ public class Terrasse {
         return date;
     }
 
-    public ArrayList<TypeTerrasse> getType() {
+    public HashMap<Integer, TypeTerrasse> getType() {
         return listeTerrasse;
     }
 
@@ -42,12 +42,18 @@ public class Terrasse {
     }
 
     public void ajouterTerrasse(typeDeTerrasse type, Date dateDebut, Date dateFin) {
-        listeTerrasse.add(new TypeTerrasse(type, dateDebut, dateFin));
+        listeTerrasse.add(dateDebut.hashCode() + dateFin.hashCode() ,new TypeTerrasse(type, dateDebut, dateFin));
     }
 
     public void retirerTerrasse(TypeTerrasse terrasse) {
         if (terrasse != null)
-            listeTerrasse.remove(terrasse);
+            try {
+                listeTerrasse.remove(terrasse.getDateDebut().hashCode() + terrasse.getDateFin().hashCode());
+            } catch (EmptyStackException ese) {
+                System.err.println(ese.getMessage());
+            } catch (Exception e) {
+                System.err.println(e.getMessage());
+            }
     }
 
     public String toString() {
