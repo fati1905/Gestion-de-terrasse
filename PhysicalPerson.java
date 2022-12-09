@@ -1,3 +1,4 @@
+import java.util.Scanner;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 public class PhysicalPerson extends Person{
@@ -5,8 +6,16 @@ public class PhysicalPerson extends Person{
     public String civilite;
     public String profession;
 
-    public PhysicalPerson(String nom, String prenom, String civilite, String profession, Account myAccount){
-        super(nom, myAccount);
+    public PhysicalPerson(){
+        super();
+
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter your First name :");
+        String prenom = sc.nextLine();
+        System.out.println("Enter your civility :");
+        String civilite = sc.nextLine();
+        System.out.println("Enter your profession :");
+        String profession = sc.nextLine();
 
         this.prenom = prenom;
         this.civilite = civilite;

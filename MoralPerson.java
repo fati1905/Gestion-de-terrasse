@@ -1,11 +1,19 @@
+import java.util.Scanner;
+
 public class MoralPerson extends Person {
     String formeJu; //Forme juridique
     String codeSiret; //Code siret de l'entreprise
 
-    public MoralPerson(String nom, Account myAccount, String formeJu, String codeSiret){
-        super(nom, myAccount);
+    public MoralPerson(){
+        super();
 
-        this.formeJu = formeJu;
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter your legal Status : ");
+        String f = sc.nextLine();
+        System.out.println("Enter your siret code :");
+        String codeSiret = sc.nextLine();
+
+        this.formeJu = f;
         this.codeSiret = codeSiret;
     }
 

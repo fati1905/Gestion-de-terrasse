@@ -1,11 +1,18 @@
+import java.util.Scanner;
+
 public class Person {
 
     public String nom; //pour une entreprise, c'est une raison sociale
-    private Account myAccount;
+     ListAccounts listAccounts = new ListAccounts();
+     private Account myAccount;
+    public Person(){
+        Scanner sc = new Scanner(System.in);
 
-    public Person(String nom, Account myAccount){
+        System.out.println("Enter your Last name or your social reason (for corporations):");
+        String nom = sc.nextLine();
+
         this.nom = nom;
-        this.myAccount = myAccount;
+        this.myAccount = listAccounts.createAccount();
     }
     public String getNom() {
         return nom;

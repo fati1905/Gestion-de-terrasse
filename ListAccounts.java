@@ -22,17 +22,20 @@ public class ListAccounts {
         this.account = account;
     }
     //This method is mainly for the sake of facilitate correcting our program by the professors
-    void createAccount(String email, String password){ //Creates account and adds it to the HashMap
+    Account createAccount(String email, String password){ //Creates account and adds it to the HashMap
         System.out.println("\n\n*******Create Account*****");
         try{
-            listAccount.put(email, new Account(email, password));
+            account = new Account(email, password);
+            listAccount.put(email, account);
             System.out.println("Account has been created, welcome aboard");
         }catch (Exception ex){
             System.out.println("Your account could not be created : "+ex.getMessage());
+            return null;
         }
+        return account;
     }
 
-    void createAccount(){ //Creates account and adds it to the HashMap
+    public Account createAccount(){ //Creates account and adds it to the HashMap
         System.out.println("\n\n******* Create Account *****");
         Scanner input = new Scanner(System.in);
 
@@ -43,16 +46,14 @@ public class ListAccounts {
 
         //todo: If account does already exist we don't recreate it
         try{
-            listAccount.put(email, new Account(email, password));
+            account = new Account(email, password);
+            listAccount.put(email, account );
             System.out.println("\nAccount has been created, welcome aboard");
         }catch (Exception ex){
             System.out.println("\nYour account could not be created : "+ex.getMessage());
+            return null;
         }
-
-        //Delete the following
-        for (var entry : listAccount.entrySet()){
-            System.out.println(entry.getKey()+" "+entry.getValue());
-        }
+        return account;
     }
 
     public String login(){//Returns The id of th user in (email)
