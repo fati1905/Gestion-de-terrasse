@@ -24,8 +24,9 @@ public class ListAccounts {
     //This method is mainly for the sake of facilitate correcting our program by the professors
     Account createAccount(String email, String password){ //Creates account and adds it to the HashMap
         System.out.println("\n\n*******Create Account*****");
+        Role r = new Role();
         try{
-            account = new Account(email, password);
+            account = new Account(email, password, r);
             listAccount.put(email, account);
             System.out.println("Account has been created, welcome aboard");
         }catch (Exception ex){
@@ -43,10 +44,10 @@ public class ListAccounts {
         String email = input.nextLine();
         System.out.print("\nEnter your password : ");
         String password = input.nextLine();
-
+        Role r = new Role();
         //todo: If account does already exist we don't recreate it
         try{
-            account = new Account(email, password);
+            account = new Account(email, password, r);
             listAccount.put(email, account );
             System.out.println("\nAccount has been created, welcome aboard");
         }catch (Exception ex){
@@ -137,34 +138,32 @@ public class ListAccounts {
         return newEmail;
     }
 
-    public static void main(String[] args) {
-        ListAccounts accounts = new ListAccounts();
-        char[] idAccount = new char[1024];
+    public void deleteAccount(){
+        System.out.println("\n\n*******Update Email*******");
+        Scanner input = new Scanner(System.in);
+        String em;
+        while (true){ //Verifies the credentials of the user
 
-        //Creating accounts
-        accounts.createAccount("fatima@gmail.com", "fatima");
-        accounts.createAccount("barry@gmail.com", "barry");
-        accounts.createAccount("lapujade@gmail.com", "lapujade");
+            System.out.print("Enter your current email address : ");
+            String e = input.nextLine();
+            System.out.print("Enter your password : ");
+            String p = input.nextLine();
 
-        System.out.println("***tests***\n\n\n");
-        //Test the real create account
-        accounts.createAccount();
+            if(listAccount.get(id).getEmail().equals(e)){
 
-        //Log into the account
-        try {
-            idAccount = accounts.login().toCharArray();
-        }catch (Exception ex){
-            System.out.println("Error whiling logging was with supported characters : " +ex.getMessage() );
+                if(listAccount.get(id).getPassword().equals(p)){
+
+                    em = e;
+                    break;
+                }
+            }
+            System.out.println("Your credentials are wrong, please try again!");
         }
 
-        //Update email
         try {
-            idAccount = accounts.updateEmail(String.valueOf(idAccount)).toCharArray();
+            listAccount.remove(em);
         }catch (Exception ex){
-            System.out.println("Error whiling updating the email : " +ex.getMessage() );
+            System.out.println("Account could not be deleted :"+ex.getMessage());
         }
-
-        //Change password
-        accounts.updatePass(String.valueOf(idAccount));
     }
 }
