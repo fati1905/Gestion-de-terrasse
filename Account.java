@@ -4,13 +4,18 @@ import java.util.Scanner;
 public class Account {
     protected String email;
     private String password;//Change if possible
-    private final ArrayList<Role> roles = new ArrayList<>();
+    private final ArrayList<Role> roles = new ArrayList<Role>();
 
     public Account(String e, String p, Role r){
         email = e;
         password = p;
         roles.add(r);
     }
+
+    public ArrayList<Role> getRoles() {
+        return roles;
+    }
+
 
     public void setEmail(String email) {
         this.email = email;

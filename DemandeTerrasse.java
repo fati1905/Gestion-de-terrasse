@@ -17,19 +17,22 @@ public class DemandeTerrasse {
     private String adresse;
     private Dimension dimension;
     Calendar date;
+    Etablissement etablissement;
+    Person person;
 
-    public DemandeTerrasse(){
+    public DemandeTerrasse(Account c){
         Scanner sc = new Scanner(System.in);
 
         System.out.println("Entrer adresse de terrasse :");
-        String ad = sc.nextLine();
-        this.adresse = ad;
-        System.out.println("Entrer adresse dimensions Largeur:");
+        this.adresse = sc.nextLine();
+        System.out.println("Entrer Largeur du terrasse :");
         int s = sc.nextInt();
-        System.out.println("Entrer adresse dimensions hauteur:");
+        System.out.println("Entrer la hauteur du terrasse :");
         int s1 = sc.nextInt();
         this.dimension = new Dimension();
         date = Calendar.getInstance();
+        this.etablissement = new Etablissement();
+
     }
 
     public etatD getEtat() {
@@ -64,11 +67,33 @@ public class DemandeTerrasse {
         this.dimension = dimension;
     }
 
-    void redigerRapport(){
-        System.out.println("Rédiger votre rapport :");
-        Scanner sc = new Scanner(System.in);
+    public Etablissement getEtablissement() {
+        return etablissement;
+    }
 
-        this.rapport = sc.nextLine();
+    public Person getPerson() {
+        return person;
+    }
+
+    public void setEtablissement(Etablissement etablissement) {
+        this.etablissement = etablissement;
+    }
+
+    public void setPerson(Person person) {
+        this.person = person;
+    }
+
+    void redigerRapport(Account c){
+        Role r = new Role(roleP.surveillant);
+
+        if(c.getRoles().contains(r)){
+            System.out.println("Rédiger votre rapport :");
+            Scanner sc = new Scanner(System.in);
+
+            this.rapport = sc.nextLine();
+        }else {
+            System.out.println("Vous n'avez pas le droit de rédiger le raaport.");
+        }
     }
 
     public Calendar getDate() {
@@ -86,6 +111,10 @@ public class DemandeTerrasse {
                 ", rapport='" + rapport + '\'' +
                 ", adresse='" + adresse + '\'' +
                 ", dimension=" + dimension +
+                ", date=" + date +
+                ", etablissement=" + etablissement +
+                ", person=" + person +
                 '}';
     }
 }
+

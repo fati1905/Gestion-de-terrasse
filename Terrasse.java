@@ -3,11 +3,13 @@ public class Terrasse {
     private int surface;
     private Date date;
     private int code;
+    protected Etablissement etablissement;
 
-    public Terrasse(int surface, Date date, int code) {
+    public Terrasse(int surface, Date date, int code, Etablissement e) {
         this.surface = surface;
         this.date = date;
         this.code = code;
+        this.etablissement = e;
     }
 
     public int getSurface() {

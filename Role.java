@@ -21,15 +21,19 @@ public class Role {
                 String r = sc.nextLine();
                 if(r.equals("e")){
                     this.role = roleP.exploitant;
+                    break;
                 }
                 if(r.equals("a")){
                     this.role = roleP.agentAd;
+                    break;
                 }
                 if(r.equals("s")){
                     this.role = roleP.surveillant;
+                    break;
                 }
                 if(r.equals("m")){
                     this.role = roleP.maintainAd;
+                    break;
                 }
                 System.out.println("Réessayer!");
             }
@@ -37,6 +41,10 @@ public class Role {
             System.out.println("Erreur :"+exe.getMessage() );
         }
 
+    }
+
+    public Role(roleP r){
+          this.role = r;
     }
 
     public roleP getRole() {

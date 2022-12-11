@@ -4,7 +4,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class ListDemandeTerrasse {
     Calendar c = Calendar.getInstance();
-    AtomicInteger idD;
+    AtomicInteger idD = new AtomicInteger(0);
     DemandeTerrasse demande;
     HashMap<Integer,DemandeTerrasse> listDemandeTerrasse = new HashMap<>();
 
@@ -24,10 +24,10 @@ public class ListDemandeTerrasse {
         this.demande = demande;
     }
 
-    public DemandeTerrasse createDemande(){
+    public DemandeTerrasse createDemande(Account c){
         System.out.println("****** Créer une demande ******");
         try{
-            demande = new DemandeTerrasse();
+            demande = new DemandeTerrasse(c);
             listDemandeTerrasse.put(idD.incrementAndGet(), this.demande);
             return demande;
         }catch (Exception ex){

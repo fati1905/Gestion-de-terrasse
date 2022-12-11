@@ -24,9 +24,8 @@ public class ListAccounts {
     //This method is mainly for the sake of facilitate correcting our program by the professors
     Account createAccount(String email, String password){ //Creates account and adds it to the HashMap
         System.out.println("\n\n*******Create Account*****");
-        Role r = new Role();
         try{
-            account = new Account(email, password, r);
+            account = new Account(email, password, new Role());
             listAccount.put(email, account);
             System.out.println("Account has been created, welcome aboard");
         }catch (Exception ex){
@@ -164,6 +163,12 @@ public class ListAccounts {
             listAccount.remove(em);
         }catch (Exception ex){
             System.out.println("Account could not be deleted :"+ex.getMessage());
+        }
+    }
+
+    public void displayAccounts(){
+        for (var entry: listAccount.entrySet()) {
+            System.out.println("Email "+entry.getKey()+" mdp : "+entry.getValue().getPassword());
         }
     }
 }
